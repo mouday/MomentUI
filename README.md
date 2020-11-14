@@ -56,3 +56,86 @@ new Vue({
   render: h => h(App)
 })
 ```
+
+## 使用示例
+
+mo-button 是对业务按钮的统一封装
+
+```html
+<mo-button />
+<mo-button type='success' />
+<mo-button type='edit' />
+<mo-button type='delete' />
+<mo-button type='detail' />
+```
+
+`this.$msg.success('message')` 确保只有一个弹框
+
+```html
+<div>
+  <el-button @click="handleClickSuccess">single弹框</el-button>
+</div>
+```
+
+mo-switch兼容传递过来的数字0/1和字符串'0'/'1'
+
+```html
+<div>
+  <mo-switch v-model="switchValue"
+    @change="handelSwitchChange" />
+</div>
+```
+
+mo-text 用于显示文本，如果文本为空替换为默认值
+
+```html
+<div>
+  <mo-text text="" />
+  <mo-text text=""
+    empty="x" />
+</div>
+```
+
+mo-join 用于显示列表数据，如果文本为空替换为默认值
+
+```html
+<div>
+  <mo-join :list="[1, 2, 3, 0]" />
+
+  <mo-join :list="['北京', '朝阳区']"
+    separator="-" />
+
+  <mo-join :list="[]"
+    empty="x" />
+</div>
+```
+
+mo-pagination 简化参数，并且兼容后端传递的字符串total（虽然不规范，但是避免不了有些后端人员不懂数据类型，非要传递字符串格式的数据）
+```html
+<div>
+  <mo-pagination total='23' />
+</div>
+```
+
+mo-table  修改了默认的头部背景色
+
+```html
+<div>
+  <mo-table :data="tableData">
+
+    <el-table-column prop="date"
+      label="日期"
+      width="180">
+    </el-table-column>
+
+    <el-table-column prop="name"
+      label="姓名"
+      width="180">
+    </el-table-column>
+    
+    <el-table-column prop="address"
+      label="地址">
+    </el-table-column>
+  </mo-table>
+</div>
+```
