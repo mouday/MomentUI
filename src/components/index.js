@@ -4,8 +4,10 @@ import Button from "./button/main.vue";
 import Switch from "./switch/main.vue";
 import Text from "./text/main.vue";
 import Join from "./join/main.vue";
+import Pagination from "./pagination/main.vue";
+import Table from "./table/main.vue";
 
-const components = [Button, Switch, Text, Join];
+const components = [Button, Switch, Text, Join, Pagination, Table];
 
 // 注册组件
 const install = function(Vue, options) {

@@ -2,6 +2,8 @@
 
 一个基于Vue和ElementUI的扩展UI组件库
 
+https://element.eleme.cn/#/zh-CN/component/installation
+
 用于业务统一封装
 
 ## 方式一：CDN引入

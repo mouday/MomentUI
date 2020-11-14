@@ -3,13 +3,11 @@
     v-bind="$attrs"
     v-on="$listeners"
     hide-on-single-page
-    :page-size="pageSize"
-    :page-sizes="[10, 20, 50, 100]"
-    :current-page="currentPage"
-    :layout="layout"
     :total="innerTotal"
-    @size-change="handleSizeChange"
-    @current-change="handleCurrentChange">
+    :page-size.sync="innerSize"
+    :current-page.sync="innerPage"
+    :layout="layout"
+    :page-sizes="[10, 20, 50, 100]">
   </el-pagination>
 </template>
 
@@ -22,28 +20,26 @@ export default {
   name: "MoPagination",
 
   /**
-   * 传入 0 或 1
-   *
-   * sync: currentPage
+   * sync: page、size
    * emit: change
    */
   props: {
-    currentPage: {
+    page: {
       type: Number,
-      default: 1
+      default: 1,
+    },
+    size: {
+      type: Number,
+      default: 10,
     },
     total: {
       type: Number | String,
-      default: 0
-    },
-    pageSize: {
-      type: Number,
-      default: 10
+      default: 0,
     },
     layout: {
       type: String,
-      default: "total, prev, pager, next"
-    }
+      default: "total, prev, pager, next",
+    },
   },
 
   computed: {
@@ -54,21 +50,27 @@ export default {
       } else {
         return this.total;
       }
-    }
-  },
-
-  methods: {
-    handleSizeChange(size) {
-      this.$emit("update:pageSize", size);
-      this.$emit("size-change", size);
-      this.$emit("change", size);
     },
 
-    handleCurrentChange(page) {
-      this.$emit("update:currentPage", page);
-      this.$emit("current-change", page);
-      this.$emit("change", page);
-    }
-  }
+    innerSize: {
+      get() {
+        return this.size;
+      },
+      set(val) {
+        this.$emit("update:size", val);
+        this.$emit("change");
+      },
+    },
+    
+    innerPage: {
+      get() {
+        return this.page;
+      },
+      set(val) {
+        this.$emit("update:page", val);
+        this.$emit("change");
+      },
+    },
+  },
 };
 </script>
