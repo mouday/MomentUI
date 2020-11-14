@@ -1,0 +1,44 @@
+<template>
+  <span>{{innerList}}</span>
+</template>
+
+<script>
+/**
+ * 类似 list.join(separator)
+ */
+export default {
+  name: "MoJoin",
+
+  props: {
+    // 传入的 字符串 或数字 列表
+    list: {
+      type: Array,
+      default: () => [],
+    },
+    // 分隔符
+    separator: {
+      type: String,
+      default: "·",
+    },
+    // 如果list为空显示的内容
+    empty: {
+      type: String,
+      default: "-",
+    },
+  },
+
+  computed: {
+    innerList() {
+      // 传入的地址列表 中间使用点连接，如果没有返回默认值
+      if (this.list.length > 0) {
+        return this.list.join(this.separator);
+      } else {
+        return this.empty;
+      }
+    },
+  },
+};
+</script>
+
+<style lang="scss" scoped>
+</style>
